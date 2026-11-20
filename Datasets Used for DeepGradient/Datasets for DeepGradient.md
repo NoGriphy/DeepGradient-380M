@@ -13,5 +13,6 @@ All sources come from HuggingFace - https://huggingface.co/
 10. HuggingFaceH4___capybara
 11. flytech___python-codes-25k
 12. alespalla___chatbot_instruction_prompts
+13. HuggingFaceFW/fineweb-edu
 
 (Note: It is the best to design a "phase-planner" that lets the model learns and reviews every topic, depending how the model is built.)
