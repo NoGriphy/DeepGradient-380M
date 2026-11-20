@@ -27,7 +27,9 @@ making the model to master English grammar first before diving into next topic (
 
 **[Next Step]**: Since the model has a bit context on English instructions, it will go through 70% coding dataset to see how well it performs. 
 
-**( ---------- SECOND TRAINING RECORD IS BELOW ---------- )**
+
+$$\color{#00BFFF}{\texttt{( ---------- SECOND TRAINING RECORD IS BELOW ---------- )}}$$
+
 
 2. The model has learned through **'anygradient_TS.bin' (1) (Stage 2: 70% coding (12,600 rows), 20% English instruction/casual conversations (3,600 rows), ~0.2% Basic Greetings (50 rows))**
 with 1,325 episodes. Since the current model has the ability to process 16,384 tokens per episode, according to "General Notes", and the total number of tokens for file is 4,343,270. 
@@ -42,7 +44,9 @@ The final loss for Episode 1,325 is 0.6 (1 significant figure).
 
 **[Next Step]**: The model needs to review general English instructions.
 
-$$\color{#00BFFF}{\textbf{( ---------- THIRD TRAINING RECORD IS BELOW ---------- )}}$$
+
+$$\color{#00BFFF}{\texttt{( ---------- THIRD TRAINING RECORD IS BELOW ---------- )}}$$
+
 
 3. Revising English instructions with partial coding dataset via **'anygradient_TS.bin' (2) (Stage 2.5: 65% English instructions (11,700 rows), 34% Coding (6,120 rows), 1% Basic Greetings (180 rows))**.
 The model replies with its pure reasoning rather than memorizing a specific sentence. Although there is a slight overfitting on self-introduction, decreasing it to 1% so it has tiny chance of 
@@ -54,7 +58,9 @@ The final loss score for Episode 1,255 is 1.7 (2sf).
 
 **[Next Step]**: The model requires common sense/knowledge in order to reason logically on math and coding later. 
 
-**( ---------- FOURTH TRAINING RECORD IS BELOW ---------- )**
+
+$$\color{#00BFFF}{\texttt{( ---------- FOURTH TRAINING RECORD IS BELOW ---------- )}}$$
+
 
 4. The model answers some of the user's questions logically but still lacks of common sense. To fix this, the model will go through this 'HuggingFaceTB/cosmopedia' to build up general knowledge. 
 The file **'anygradient_TS.bin' (3) (Stage 2.8: World Knowledge (~56%), Fresh Python (~26%), Intro Math (~16%), Greetings (~1%))** has 15,409,026 tokens. This time, decreasing the epoch counts to
@@ -64,11 +70,11 @@ One completion: 15,409,026 / 16,384 = 940 (2sf). Two epochs is 1,880 (940 * 2).
 
 The final loss score for Episode 1,880 is 2.4 (2sf).
 
-**( ---------- FIFTH TRAINING RECORD IS BELOW ---------- )**
+
+$$\color{#00BFFF}{\texttt{( ---------- FIFTH TRAINING RECORD IS BELOW ---------- )}}$$
+
 
 ...
-
-
 
 
 ### THIS REPOSITORY IS WAITING UPDATES FROM THE CREATOR...
