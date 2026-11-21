@@ -2,20 +2,20 @@
 **I used PyTorch's load function, which has the ability to load the raw weights without any unwanted data - although I am the one who often 
 saves the file, keeping 'weight_only' to True is always safe. Additionally, setting the device location to CUDA for parallel processing instead
 of CPU to increase the computing speed (if the data was processed previously on GPU, adding this parameter is redundant; however, defining
-every parameter is for better clarity).**
+every parameter for the function is for better clarity).**
 
-**1.** Three main parameters to pass in 'torch.load()' is the file location, device location, and whether to load only the raw tensors. Because
-"load_model_parameters" contains all the elements from 'self.model_parameters' (specified in 'Model Parameters Saver'), we are going to run
-through three for-loops to conduct in-place copy operation without allocating new memory in computer's RAM.
+**1.** Three main parameters to pass in 'torch.load()' are the file location, device location, and whether to load only the raw tensors (True/False). 
+Because "load_model_parameters" contains all the elements from 'self.model_parameters' (explained in 'Model Parameters Saver'), the code runs three 
+for-loops to execute in-place copy operation without allocating new memory in computer's RAM.
 ```python
 load_model_parameters = t.load(current_saved_model_file, map_location = 'cuda', weights_only = True)
 ```
 
 **2.** 'with torch.no_grad()' is to cancel the computation dependency-tree or graph so the weights can be updated without calculating the gradients
 for this specific block; wrapping 'with torch.no_grad()' to stop tracking the backward-pass calculation. Normally, storing immediate values cause the 
-GPU or RAM to grow significantly, which is why disabling it prevent OoM (Out-of-Memory) error. Momentum and variance buffers, and general 
-weights are copied independently by using in-place copy operation - 'torch.copy()'. Using Python's built-in 'zip()' speeds up the unpacking process. The 
-PyTorch function takes the passed weights and inject them directly to the raw, random weights. 
+GPU or RAM to grow significantly, which is why disabling it prevent OoM (Out-of-Memory) error. Momentum and variance buffers, and general weights are
+copied independently with in-place operation - 'torch.copy()'. Using Python's built-in 'zip()' speeds up the unpacking process. Then, 'torch.copy()'
+takes the passed weights and inject them directly to the raw, random weights for the next training stage.
 ```python
 with t.no_grad():
   for current_matrix, saved_matrix in zip(self.model_parameters, load_model_parameters['model_weights']):
@@ -28,8 +28,7 @@ with t.no_grad():
     current_var_buffers.copy_(saved_var_buffers)
 ```
 
-**3.** Lastly, directly modify 'self.current_step' with its clone and print out the final message to ensure
-the operations have been completed. 
+**3.** Lastly, directly modifying 'self.current_step' with its clone from the file and print out the final message to ensure the operations have executed successfully. 
 ```python
 self.current_step = load_model_parameters['current_stage']
 print("\n[Previously Trained Weights Have Been Successfully Loaded]\n")
