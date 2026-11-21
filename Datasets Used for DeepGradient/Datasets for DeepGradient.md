@@ -15,4 +15,4 @@ All sources come from HuggingFace - https://huggingface.co/
 12. alespalla___chatbot_instruction_prompts
 13. HuggingFaceFW/fineweb-edu
 
-(Note: It is the best to design a "phase-planner" that lets the model learns and reviews every topic, depending how the model is built.)
+(Note: For a general assistant that requires to master every concept (text-language models like ChatGPT, Gemini, Claude, DeepSeek, etc), it is recommended to design an approach that lets the model learn and review every topic after each training stage without moving towards one subject direction. In other words, if the model is trained excessively on physics, its knowledge on other areas (e.g., coding, chemistry, history, etc) would be gradually replaced by the change in weights from the computed gradients. However, this depends entirely on the purpose of the model.)
